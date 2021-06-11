@@ -15,7 +15,7 @@ class App {
     }
 
     private configs() {
-        this.express.set('port', process.env.PORT || 8080)
+        this.express.set('port', process.env.PORT || 8828)
     }
 
     private middlewares() {
