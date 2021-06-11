@@ -11,9 +11,9 @@ class Client {
     public setClientInfo(socket: Socket, room: string) {
         socket.on('client_setClientInfo', (clientObject) =>{
           this.clientInfo = {socketID: socket.id, clientIP: clientObject.clientIP};
+          console.log(clientObject.dashSocketID);
+          
           if(!clientObject.dashSocketID){
-            console.log("dasgsocketID null");
-            
             socket.to(room).emit("dashBoard_setClientInfo", this.clientInfo);
           }
           else{
