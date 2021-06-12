@@ -18,7 +18,7 @@ class Client {
           }
           else {
             console.log("DashSocketID", DashSocketID);
-            socket.to(room).to(DashSocketID).emit("dashBoard_setClientInfo", this.clientInfo);
+            socket.to(DashSocketID).to(room).emit("dashBoard_setClientInfo", this.clientInfo);
           }
           
           
