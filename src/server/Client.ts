@@ -9,9 +9,19 @@ class Client {
     clientInfo: Object = {};
     // 클라이언트가 대쉬보드에게 정보를 전달
     public setClientInfo(socket: Socket, room: string) {
-        socket.on('client_setClientInfo', (clientIP) =>{
+        socket.on('client_setClientInfo', (clientIP, DashSocketID) =>{
+          console.log(clientIP);
           this.clientInfo = {socketID: socket.id, clientIP: clientIP};
-          socket.to(room).emit("dashBoard_setClientInfo", this.clientInfo);
+          if(!DashSocketID) {
+            console.log("!DashSocketID" + !DashSocketID);
+            socket.to(room).emit("dashBoard_setClientInfo", this.clientInfo);
+          }
+          else {
+            console.log("DashSocketID" + !DashSocketID);
+            socket.to(room).to(DashSocketID).emit("dashBoard_setClientInfo", this.clientInfo);
+          }
+          
+          
         })
       }
     // 연결 끊김
