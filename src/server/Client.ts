@@ -13,11 +13,11 @@ class Client {
           console.log(clientIP);
           this.clientInfo = {socketID: socket.id, clientIP: clientIP};
           if(!DashSocketID) {
-            console.log("!DashSocketID" + !DashSocketID);
+            console.log("!DashSocketID" + DashSocketID);
             socket.to(room).emit("dashBoard_setClientInfo", this.clientInfo);
           }
           else {
-            console.log("DashSocketID" + !DashSocketID);
+            console.log("DashSocketID" + DashSocketID);
             socket.to(room).to(DashSocketID).emit("dashBoard_setClientInfo", this.clientInfo);
           }
           
