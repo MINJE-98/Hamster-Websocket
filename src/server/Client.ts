@@ -7,6 +7,11 @@ class Client {
      * 대쉬보드가 요청 했을때 클라이언트의 정보 알려주기 emit (client_getClientInfo)
      */
     clientInfo: Object = {};
+    public newClient(socket: Socket) {
+      socket.on("client_newClient", () =>{
+        socket.broadcast.emit("dashBoard_newClient")
+      })
+  }
     // 클라이언트가 대쉬보드에게 정보를 전달
     public setClientInfo(socket: Socket) {
         socket.on('client_setClientInfo', (clientIP, DashSocketID) =>{

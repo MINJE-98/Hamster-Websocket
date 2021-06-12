@@ -14,6 +14,7 @@ class SocketHandler {
       DashBoard.getClientInfo(socket);
       Client.setClientInfo(socket);
       Client.disconnect(socket);
+      Client.newClient(socket)
       DashBoard.Utils(socket, this.room);
     });
   }

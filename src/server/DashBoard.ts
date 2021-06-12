@@ -7,12 +7,6 @@ class DashBoard {
      * 연결되었을때 소켓서버에게 클라이언트 정보 요청 -> emit (dashBoard_setClientInfo)
      * 새로운 클라이언트가 접속했을 시 클라이언트 정보 획득 -> on (dahsBoard_getClientInfo)
      */
-    public createRoom(socket: Socket) {
-        socket.on("dashBoard_createRoom", DashSocketID =>{
-
-            
-        })
-    }
     // 대쉬보드가 소켓에게 클라이언트 정보를 요청합니다.
     public getClientInfo(socket: Socket) {
         socket.on('dashBoard_getClientInfo', (DashSocketID)=> {
