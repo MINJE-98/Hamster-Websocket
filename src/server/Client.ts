@@ -12,7 +12,7 @@ class Client {
         socket.on('client_setClientInfo', (clientIP, DashSocketID) =>{
           console.log(clientIP);
           this.clientInfo = {socketID: socket.id, clientIP: clientIP};
-          socket.broadcast.emit("dashBoard_setClientInfo", this.clientInfo);
+          socket.to(DashSocketID).emit("dashBoard_setClientInfo", this.clientInfo);
         })
       }
     // 연결 끊김

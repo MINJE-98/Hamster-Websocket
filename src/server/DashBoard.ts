@@ -18,7 +18,7 @@ class DashBoard {
         socket.on('dashBoard_getClientInfo', (DashSocketID)=> {
             socket.join(DashSocketID)
             console.log("createRoom", DashSocketID);
-            socket.to(DashSocketID).emit('client_getClientInfo')
+            socket.broadcast.emit('client_getClientInfo', DashSocketID)
         })
     }
     // 대쉬보드가 클라이언트에게 행동을 지시합니다.
