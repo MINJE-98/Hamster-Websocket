@@ -9,6 +9,7 @@ class Client {
     clientInfo: Object = {};
     public newClient(socket: Socket) {
       socket.on("client_newClient", () =>{
+        console.log("a new client");
         socket.broadcast.emit("dashBoard_newClient")
       })
   }
