@@ -9,11 +9,11 @@ class SocketHandler {
   room: string = "Hamster";
   constructor(io: Server) {
     io.on("connect", (socket: Socket) => {
-      socket.join(this.room);
       console.log(`Connection ID: ${socket.id}`);
-      DashBoard.getClientInfo(socket, this.room);
-      Client.setClientInfo(socket, this.room);
-      Client.disconnect(socket, this.room);
+      // DashBoard.createRoom(socket);
+      DashBoard.getClientInfo(socket);
+      Client.setClientInfo(socket);
+      Client.disconnect(socket);
       DashBoard.Utils(socket, this.room);
     });
   }

@@ -8,27 +8,18 @@ class Client {
      */
     clientInfo: Object = {};
     // 클라이언트가 대쉬보드에게 정보를 전달
-    public setClientInfo(socket: Socket, room: string) {
+    public setClientInfo(socket: Socket) {
         socket.on('client_setClientInfo', (clientIP, DashSocketID) =>{
           console.log(clientIP);
           this.clientInfo = {socketID: socket.id, clientIP: clientIP};
-          if(!DashSocketID) {
-            console.log("!DashSocketID", DashSocketID);
-            socket.to(room).emit("dashBoard_setClientInfo", this.clientInfo);
-          }
-          else {
-            console.log("DashSocketID", DashSocketID);
-            socket.to(DashSocketID).to(room).emit("dashBoard_setClientInfo", this.clientInfo);
-          }
-          
-          
+          socket.to(DashSocketID).emit("dashBoard_setClientInfo", this.clientInfo);
         })
       }
     // 연결 끊김
-    public disconnect(socket: Socket, room: string) {
+    public disconnect(socket: Socket) {
       socket.on("disconnect", ()=>{
           console.log(socket.id + ": 연결 해제");
-          socket.to(room).emit("dashBoard_clientDisconnect", socket.id);
+          socket.broadcast.emit("dashBoard_clientDisconnect", socket.id);
       })
     }
   }
