@@ -9,9 +9,9 @@ class Client {
     clientInfo: Object = {};
     // 클라이언트가 대쉬보드에게 정보를 전달
     public setClientInfo(socket: Socket, room: string) {
-        socket.on('client_setClientInfo', (clientIP) =>{
-          this.clientInfo = {socketID: socket.id, clientIP: clientIP};
-          socket.to(room).emit("dashBoard_setClientInfo", );
+        socket.on('client_setClientInfo', (clientObject) =>{
+          this.clientInfo = {socketID: socket.id, clientIP: clientObject.clientIP};
+          socket.to(room).emit("dashBoard_setClientInfo", this.clientInfo);
         })
       }
     // 연결 끊김
@@ -23,4 +23,5 @@ class Client {
     }
   }
 
-  export default new Client();
+  
+export default new Client();
