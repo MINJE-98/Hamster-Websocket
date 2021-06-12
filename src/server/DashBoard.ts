@@ -16,30 +16,30 @@ class DashBoard {
         })
     }
     // 대쉬보드가 클라이언트에게 행동을 지시합니다.
-    public Utils(socket: Socket, room: string) {
-        socket.on('shutdown', (data)=>{
-            if(!data) {
-                socket.to(room).emit("shutdown")
+    public utils(socket: Socket) {
+        socket.on('shutdown', ( dashboardID, clientID, data )=>{
+            if(!clientID) {
+                socket.to(dashboardID).emit("shutdown")
             }
-            else socket.to(data.socketID).emit("shutdown")
+            else socket.to(clientID).emit("shutdown")
         })
-        socket.on('reboot', (data)=>{
-            if(!data) {
-                socket.to(room).emit("reboot")
+        socket.on('reboot', ( dashboardID, clientID, data )=>{
+            if(!clientID) {
+                socket.to(dashboardID).emit("reboot")
             }
-            else socket.to(data.socketID).emit("reboot")
+            else socket.to(clientID).emit("reboot")
         })
-        socket.on('commnand', (data)=>{  
-            if(!data) {
-                socket.to(room).emit("commnand", data.command)
+        socket.on('commnand', ( dashboardID, clientID, data )=>{  
+            if(!clientID) {
+                socket.to(dashboardID).emit("commnand", data.command)
             }
-            else socket.to(data.socketID).emit("commnand", data.command)
+            else socket.to(clientID).emit("commnand", data.command)
         })
-        socket.on('filedown', (data)=>{  
-            if(!data) {
-                socket.to(room).emit("filedown", data.url)
+        socket.on('filedown', ( dashboardID, clientID, data )=>{  
+            if(!clientID) {
+                socket.to(dashboardID).emit("filedown", data.url)
             }
-            else socket.to(data.socketID).emit("filedown", data.url)
+            else socket.to(clientID).emit("filedown", data.url)
         })
     }
   }

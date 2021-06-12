@@ -9,7 +9,7 @@ class Client {
     clientInfo: Object = {};
     public newClient(socket: Socket) {
       socket.on("client_newClient", clientIP =>{
-        console.log("a new client");
+        console.log("a new client", socket.id,  clientIP);
         this.clientInfo = {socketID: socket.id, clientIP: clientIP};
         socket.broadcast.emit("dashBoard_newClient", this.clientInfo)
       })
@@ -17,7 +17,7 @@ class Client {
     // 클라이언트가 대쉬보드에게 정보를 전달
     public setClientInfo(socket: Socket) {
         socket.on('client_setClientInfo', (clientIP, DashSocketID) =>{
-          console.log(clientIP);
+          console.log("send clientinfo", socket.id, clientIP);
           this.clientInfo = {socketID: socket.id, clientIP: clientIP};
           socket.to(DashSocketID).emit("dashBoard_setClientInfo", this.clientInfo);
         })
@@ -25,10 +25,16 @@ class Client {
     // 연결 끊김
     public disconnect(socket: Socket) {
       socket.on("disconnect", ()=>{
-          console.log(socket.id + ": 연결 해제");
+          console.log("disconnected", socket.id);
           socket.broadcast.emit("dashBoard_clientDisconnect", socket.id);
       })
     }
+    // 대쉬보드가 클라이언트에게 행동을 지시합니다.
+    public utilLogs(socket: Socket) {
+      socket.on('client_logEvent', ( dashboardID, clientIP, socketID, result )=>{
+        socket.to(dashboardID).emit("dashboard_logEvent", clientIP, socketID, result);
+      })
+  }
   }
 
   
