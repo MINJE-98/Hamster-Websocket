@@ -9,7 +9,7 @@ class DashBoard {
     // 대쉬보드가 소켓에게 클라이언트 정보를 요청합니다.
     public getClientInfo(socket: Socket, room: string) {
         socket.on('dashBoard_getClientInfo', (DashSocketID)=> {
-            console.log(DashSocketID);
+            console.log("dashBoard_getClientInfo", DashSocketID);
             socket.to(room).emit('client_getClientInfo', DashSocketID)
         })
     }
