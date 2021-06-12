@@ -8,9 +8,10 @@ class Client {
      */
     clientInfo: Object = {};
     public newClient(socket: Socket) {
-      socket.on("client_newClient", () =>{
+      socket.on("client_newClient", clientIP =>{
         console.log("a new client");
-        socket.broadcast.emit("dashBoard_newClient")
+        this.clientInfo = {socketID: socket.id, clientIP: clientIP};
+        socket.broadcast.emit("dashBoard_newClient", this.clientInfo)
       })
   }
     // 클라이언트가 대쉬보드에게 정보를 전달
