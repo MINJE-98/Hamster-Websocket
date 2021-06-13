@@ -15,7 +15,7 @@ class DashBoard {
             socket.broadcast.emit('client_getClientInfo', DashSocketID)
         })
     }
-    // 대쉬보드가 클라이언트에게 행동을 지시합니다.
+    // 클라이언트에게 명령
     public utils(socket: Socket) {
         socket.on('shutdown', ( dashboardID, clientID, data )=>{
             if(!clientID) {

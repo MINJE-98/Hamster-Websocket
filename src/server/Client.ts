@@ -32,6 +32,7 @@ class Client {
     // 대쉬보드가 클라이언트에게 행동을 지시합니다.
     public utilLogs(socket: Socket) {
       socket.on('client_logEvent', ( dashboardID, clientIP, socketID, result )=>{
+        console.log('client_logEvent', dashboardID, clientIP, socketID, result );
         socket.to(dashboardID).emit("dashboard_logEvent", clientIP, socketID, result);
       })
   }
