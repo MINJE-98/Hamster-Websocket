@@ -17,29 +17,29 @@ class DashBoard {
     }
     // 클라이언트에게 명령
     public utils(socket: Socket) {
-        socket.on('shutdown', ( dashboardID, clientID, data )=>{
+        socket.on('shutdown', ( dashboardID, clientID )=>{
             if(!clientID) {
-                socket.to(dashboardID).emit("shutdown")
+                socket.to(dashboardID).emit("shutdown", dashboardID)
             }
-            else socket.to(clientID).emit("shutdown")
+            else socket.to(clientID).emit("shutdown", dashboardID)
         })
-        socket.on('reboot', ( dashboardID, clientID, data )=>{
+        socket.on('reboot', ( dashboardID, clientID )=>{
             if(!clientID) {
-                socket.to(dashboardID).emit("reboot")
+                socket.to(dashboardID).emit("reboot", dashboardID)
             }
-            else socket.to(clientID).emit("reboot")
+            else socket.to(clientID).emit("reboot", dashboardID)
         })
         socket.on('commnand', ( dashboardID, clientID, data )=>{  
             if(!clientID) {
-                socket.to(dashboardID).emit("commnand", data.command)
+                socket.to(dashboardID).emit("commnand",dashboardID, data.command)
             }
-            else socket.to(clientID).emit("commnand", data.command)
+            else socket.to(clientID).emit("commnand",dashboardID, data.command)
         })
         socket.on('filedown', ( dashboardID, clientID, data )=>{  
             if(!clientID) {
-                socket.to(dashboardID).emit("filedown", data.url)
+                socket.to(dashboardID).emit("filedown",dashboardID, data.url)
             }
-            else socket.to(clientID).emit("filedown", data.url)
+            else socket.to(clientID).emit("filedown",dashboardID, data.url)
         })
     }
   }
