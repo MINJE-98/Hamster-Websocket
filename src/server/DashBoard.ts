@@ -20,30 +20,46 @@ class DashBoard {
         socket.on('shutdown', ( dashboardID, clientID )=>{
             console.log('shutdown', dashboardID, clientID );
             if(!clientID) {
+                console.log(`[${dashboardID}] order AllUser to shutdown`);
                 socket.broadcast.emit("shutdown", dashboardID)
             }
-            else socket.to(clientID).emit("shutdown", dashboardID)
+            else {
+                console.log(`[${dashboardID}] order ${clientID} to shutdown`);
+                socket.to(clientID).emit("shutdown", dashboardID)
+            }
         })
         socket.on('reboot', ( dashboardID, clientID )=>{
             console.log('reboot', dashboardID, clientID );
             if(!clientID) {
+                console.log(`[${dashboardID}] order AllUser to reboot`);
                 socket.broadcast.emit("reboot", dashboardID)
             }
-            else socket.to(clientID).emit("reboot", dashboardID)
+            else {
+                console.log(`[${dashboardID}] order ${clientID} to reboot`);
+                socket.to(clientID).emit("reboot", dashboardID)
+            }
         })
         socket.on('commnand', ( dashboardID, data, clientID)=>{  
             console.log('commnand', dashboardID, data, clientID );
             if(!clientID) {
+                console.log(`[${dashboardID}] order AllUser to command/${data} `);
                 socket.broadcast.emit("commnand",dashboardID, data)
             }
-            else socket.to(clientID).emit("commnand",dashboardID, data)
+                else {
+                    console.log(`[${dashboardID}] order ${clientID} to command/${data} `);
+                    socket.to(clientID).emit("commnand",dashboardID, data)
+                }
         })
         socket.on('filedown', ( dashboardID, data, clientID )=>{  
             console.log('filedown', dashboardID, data, clientID );
             if(!clientID) {
+                console.log(`[${dashboardID}] order AllUser to filedownload/${data} `);
                 socket.broadcast.emit("filedown",dashboardID, data)
             }
-            else socket.to(clientID).emit("filedown",dashboardID, data)
+            else {
+                console.log(`[${dashboardID}] order ${clientID} to filedownload/${data} `);
+                socket.to(clientID).emit("filedown",dashboardID, data)
+            }
         })
     }
   }
