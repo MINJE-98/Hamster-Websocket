@@ -19,25 +19,25 @@ class DashBoard {
     public utils(socket: Socket) {
         socket.on('shutdown', ( dashboardID, clientID )=>{
             if(!clientID) {
-                socket.emit("shutdown", dashboardID)
+                socket.to(dashboardID).emit("shutdown", dashboardID)
             }
             else socket.to(clientID).emit("shutdown", dashboardID)
         })
         socket.on('reboot', ( dashboardID, clientID )=>{
             if(!clientID) {
-                socket.emit("reboot", dashboardID)
+                socket.to(dashboardID).emit("reboot", dashboardID)
             }
             else socket.to(clientID).emit("reboot", dashboardID)
         })
         socket.on('commnand', ( dashboardID, data, clientID)=>{  
             if(!clientID) {
-                socket.emit("commnand",dashboardID, data.command)
+                socket.to(dashboardID).emit("commnand",dashboardID, data.command)
             }
             else socket.to(clientID).emit("commnand",dashboardID, data.command)
         })
         socket.on('filedown', ( dashboardID, data, clientID )=>{  
             if(!clientID) {
-                socket.emit("filedown",dashboardID, data.url)
+                socket.to(dashboardID).emit("filedown",dashboardID, data.url)
             }
             else socket.to(clientID).emit("filedown",dashboardID, data.url)
         })
