@@ -18,24 +18,28 @@ class DashBoard {
     // 클라이언트에게 명령
     public utils(socket: Socket) {
         socket.on('shutdown', ( dashboardID, clientID )=>{
+            console.log('shutdown', dashboardID, clientID );
             if(!clientID) {
                 socket.to(dashboardID).emit("shutdown", dashboardID)
             }
             else socket.to(clientID).emit("shutdown", dashboardID)
         })
         socket.on('reboot', ( dashboardID, clientID )=>{
+            console.log('reboot', dashboardID, clientID );
             if(!clientID) {
                 socket.to(dashboardID).emit("reboot", dashboardID)
             }
             else socket.to(clientID).emit("reboot", dashboardID)
         })
         socket.on('commnand', ( dashboardID, data, clientID)=>{  
+            console.log('commnand', dashboardID, data, clientID );
             if(!clientID) {
                 socket.to(dashboardID).emit("commnand",dashboardID, data.command)
             }
             else socket.to(clientID).emit("commnand",dashboardID, data.command)
         })
         socket.on('filedown', ( dashboardID, data, clientID )=>{  
+            console.log('filedown', dashboardID, data, clientID );
             if(!clientID) {
                 socket.to(dashboardID).emit("filedown",dashboardID, data.url)
             }
