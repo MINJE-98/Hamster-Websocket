@@ -29,13 +29,13 @@ class DashBoard {
             }
             else socket.to(clientID).emit("reboot", dashboardID)
         })
-        socket.on('commnand', ( dashboardID, clientID, data )=>{  
+        socket.on('commnand', ( dashboardID, data, clientID)=>{  
             if(!clientID) {
                 socket.emit("commnand",dashboardID, data.command)
             }
             else socket.to(clientID).emit("commnand",dashboardID, data.command)
         })
-        socket.on('filedown', ( dashboardID, clientID, data )=>{  
+        socket.on('filedown', ( dashboardID, data, clientID )=>{  
             if(!clientID) {
                 socket.emit("filedown",dashboardID, data.url)
             }
