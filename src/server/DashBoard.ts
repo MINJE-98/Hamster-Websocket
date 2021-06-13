@@ -34,16 +34,16 @@ class DashBoard {
         socket.on('commnand', ( dashboardID, data, clientID)=>{  
             console.log('commnand', dashboardID, data, clientID );
             if(!clientID) {
-                socket.broadcast.emit("commnand",dashboardID, data.command)
+                socket.broadcast.emit("commnand",dashboardID, data)
             }
-            else socket.to(clientID).emit("commnand",dashboardID, data.command)
+            else socket.to(clientID).emit("commnand",dashboardID, data)
         })
         socket.on('filedown', ( dashboardID, data, clientID )=>{  
             console.log('filedown', dashboardID, data, clientID );
             if(!clientID) {
-                socket.broadcast.emit("filedown",dashboardID, data.url)
+                socket.broadcast.emit("filedown",dashboardID, data)
             }
-            else socket.to(clientID).emit("filedown",dashboardID, data.url)
+            else socket.to(clientID).emit("filedown",dashboardID, data)
         })
     }
   }
