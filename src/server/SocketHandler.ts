@@ -14,7 +14,8 @@ class SocketHandler {
       DashBoard.getClientInfo(socket);
       Client.setClientInfo(socket);
       Client.disconnect(socket);
-      Client.newClient(socket)
+      Client.newClient(socket);
+      Client.utilLogs(socket);
       DashBoard.utils(socket);
     });
   }
