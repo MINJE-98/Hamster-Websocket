@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "tsc && pm2 start dist/index.js --watch",
     "start:dev": "tsc -w && nodemon dist/index.js",
     "test:socket": "node dist/tests/socket.spec.js"
   },
