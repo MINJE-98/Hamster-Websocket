@@ -8,6 +8,10 @@ class SocketHandler {
   // 소켓 연결
   constructor(io: Server) {
     io.on("connect", (socket: Socket) => {
+      const req = socket.request;
+      const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+      console.log(ip);
+
       console.log(`Connection ID: ${socket.id}`);
       const dashboard = new DashBoard(socket);
       const client = new Client(socket);
