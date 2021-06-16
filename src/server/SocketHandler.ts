@@ -9,10 +9,11 @@ class SocketHandler {
   constructor(io: Server) {
     io.on("connect", (socket: Socket) => {
       const req = socket.request;
+      const remoteAddress = socket.handshake.address;
       const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
       console.log(req);
 
-      console.log(ip);
+      console.log(`아이피:${ip} 리모트: ${remoteAddress}`);
 
       console.log(`Connection ID: ${socket.id}`);
       const dashboard = new DashBoard(socket);
