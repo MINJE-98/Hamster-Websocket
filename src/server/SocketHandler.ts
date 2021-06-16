@@ -10,6 +10,8 @@ class SocketHandler {
     io.on("connect", (socket: Socket) => {
       const req = socket.request;
       const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+      console.log(req);
+
       console.log(ip);
 
       console.log(`Connection ID: ${socket.id}`);
