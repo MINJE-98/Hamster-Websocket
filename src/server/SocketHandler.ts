@@ -11,10 +11,7 @@ class SocketHandler {
       const req = socket.request;
       const remoteAddress = socket.handshake.address;
       const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-      console.log(req);
-
       console.log(`아이피:${ip} 리모트: ${remoteAddress}`);
-
       console.log(`Connection ID: ${socket.id}`);
       const dashboard = new DashBoard(socket);
       const client = new Client(socket);
@@ -26,6 +23,7 @@ class SocketHandler {
       client.disconnect();
       client.newClient();
       client.utilLogs();
+      client.quickStartMining();
     });
   }
 }
