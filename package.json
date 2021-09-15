@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start-pm2": "tsc && pm2 start dist/index.js --watch",
-    "start-dev": "tsc -w && nodemon dist/index.js",
+    "start-dev": "tsc && nodemon dist/index.js",
     "test-socket": "node dist/tests/socket.spec.js"
   },
   "repository": {
